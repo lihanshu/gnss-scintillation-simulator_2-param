@@ -1,4 +1,5 @@
 close all;
+clear;
 %% Add the path to the libraries to current search path
 path2directories=pwd;
 path2Libraries=[path2directories,'/Libraries'];
@@ -10,22 +11,23 @@ addpath([path2Libraries,'/Utilities']);
 
 %% User input parameters***************************************************
 %Please specify date and time as [year month day hour minute second]
-userInput.dateTime = [2014 02 05 13 27 00]; 
+userInput.dateTime = [2013 10 05 12 25 00]; 
 
 %Please choose data length for simulation\n (300s, 600s, or 900s)
-userInput.length = 300;
+userInput.length = 600;
 
 % Please specify receiver position as [lat(rad), lon(rad), height(m)\n]'
-userInput.RXPos = [0.3876 1.9942 59.6780]';
+userInput.RXPos = [22.2/180 *pi  114.3/180 *pi 60]';
 
 % Please input receiver Vel as [V1,V2,V3]'
 %    V1 = east-west velocity on the earth arc (m/s, eastward +)
 %    V2 = north-south velocity on the earch arc (m/s, northward +)
 %    V3 = up-down velocity (m/s, up +)
-userInput.RXVel = [100 0 0]';
+%userInput.RXVel = [110 -102 0]';
+userInput.RXVel = [-150 0 0]';
 
 % Please specify satellite PRN (0~32)
-userInput.PRN = 1;
+userInput.PRN = 24;
 
 % Plotting figures of the simulated propagation geometry and scintillation intensity and phase? yes-1/no-0
 userInput.plotSign = 1;

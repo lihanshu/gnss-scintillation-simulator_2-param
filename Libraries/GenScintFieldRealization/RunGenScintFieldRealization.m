@@ -84,18 +84,18 @@ if userInput.plotSign==1
         Scin_amp=abs(Scin_psi(nfreq,1:nsamp_seg));
         Scin_phi=unwrap(atan2(imag(Scin_psi(nfreq,1:nsamp_seg)),real(Scin_psi(nfreq,1:nsamp_seg))));
         ax(1)=subplot(userInput.frequencyNo,2,nfreq*2-1);
-        plot(t_sec/60,dB10(Scin_amp.^2),'r')
+        plot(t_sec,dB10(Scin_amp.^2),'r')
         grid on
         ylabel('I-dB')
         title(ID)
-        axis([min(t_sec/60) max(t_sec/60) -45 10])
+        axis([min(t_sec) max(t_sec) -45 10])
         text(4,-40,['S4=',num2str(S4(nfreq))])
         ax(2)=subplot(userInput.frequencyNo,2,nfreq*2);
-        plot(t_sec/60,Scin_phi,'r')
+        plot(t_sec,Scin_phi,'r')
         grid on
         ylabel('\phi-rad')
         xlabel('t-min')
-        axis([min(t_sec/60) max(t_sec/60)  min(floor(Scin_phi))  max(ceil(Scin_phi))])
+        axis([min(t_sec) max(t_sec)  min(floor(Scin_phi))  max(ceil(Scin_phi))])
         linkaxes(ax,'x')
         bold_fig
     end
