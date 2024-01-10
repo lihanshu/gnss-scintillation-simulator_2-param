@@ -99,4 +99,5 @@ if userInput.plotSign==1
         linkaxes(ax,'x')
         bold_fig
     end
+    print('-dpng', 'figure/ScintFieldRealization.png');
 end

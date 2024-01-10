@@ -1,13 +1,17 @@
 function       eph=ExtractRINEXeph(userInput)
 % USAGE:  Extract RINEX ephemeris file from website 
+% https://cddis.nasa.gov/archive/gnss/data/daily/
+% ref:https://www.cnblogs.com/Gou-Hailong/p/14258492.html
+
 % ftp://cddis.gsfc.nasa.gov/gnss/data/daily/YYYY/DDD/YYn/brdcDDD0.YYn.Z
 % and store the parameters in the eph struct:
+
 year = userInput.dateTime(1);
 day_of_year = datenum(userInput.dateTime(1),...
     userInput.dateTime(2),userInput.dateTime(3))-datenum(year-1,12,31);
 PRN = userInput.PRN;
 
-datadir = 'ftp://cddis.gsfc.nasa.gov/gnss/data/daily/';
+datadir = 'https://cddis.nasa.gov/archive/gnss/data/daily/';
 YYYY = num2str(year);
 DDD = num2str(day_of_year);
 if length(DDD)== 1
@@ -17,6 +21,7 @@ elseif length(DDD) == 2
 end
 YY = YYYY(3:4);
 RinexFile = [datadir,YYYY,'/',DDD,'/',YY,'n/brdc',DDD,'0.',YY,'n.Z'];
+disp(RinexFile);
 [~,ephfile] = fileparts(RinexFile);
 if ~exist(ephfile,'file')
     if ~exist([ephfile,'.Z'],'file') 

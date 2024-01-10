@@ -1,3 +1,4 @@
+close all;
 %% Add the path to the libraries to current search path
 path2directories=pwd;
 path2Libraries=[path2directories,'/Libraries'];
@@ -9,7 +10,7 @@ addpath([path2Libraries,'/Utilities']);
 
 %% User input parameters***************************************************
 %Please specify date and time as [year month day hour minute second]
-userInput.dateTime = [2014 01 02 10 00 00]; 
+userInput.dateTime = [2014 02 05 13 27 00]; 
 
 %Please choose data length for simulation\n (300s, 600s, or 900s)
 userInput.length = 300;

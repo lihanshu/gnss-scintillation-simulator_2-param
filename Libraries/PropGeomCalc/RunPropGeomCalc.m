@@ -68,7 +68,10 @@ for drift_East = drift_East_range %Establish the baseline of veff versus drift_E
     veff_range(nn) = mean(satGEOM.veff);
 end
 drift_East_est = mean(interp1(veff_range,drift_East_range,veff_ori,'spline')); %Interpolation
-if(drift_East_est>250||drift_East_est<=0||mean(satGEOM.sat_elev)<=15*pi/180)
+%if(drift_East_est>250||drift_East_est<=0||mean(satGEOM.sat_elev)<=15*pi/180)
+disp('mean(satGEOM.sat_elev) is ')
+disp(mean(satGEOM.sat_elev))
+if(drift_East_est>250||drift_East_est<=0)
     error('bad geometry for Vdrift estimation and dynamic platform scintillation simulation');
 end
 %% Obtain the geometry based on the user defined dynamic platform
@@ -90,7 +93,7 @@ if (userInput.plotSign)
     title({['Sky View of GNSS SV Track '];...
         [num2str(fix(userInput.length/60)) ' min from UTC ' num2str(UTCDateTime(1)) '-' num2str(UTCDateTime(2)) '-' num2str(UTCDateTime(3))...
         ' ' num2str(UTCDateTime(4),'%02d') ':' num2str(UTCDateTime(5),'%02d') ':' num2str(UTCDateTime(6),'%02d')]});
-    
+    print('-dpng', 'figure/skyPlot.png');
     hfig2 = figure;
     plot3(satGEOM.satp_tcs(1,:)/1000,satGEOM.satp_tcs(2,:)/1000,satGEOM.satp_tcs(3,:)/1000,'k')
     hold on
@@ -117,5 +120,6 @@ if (userInput.plotSign)
         'm/s'];[' V_s_c_a_n [East, North] = [',num2str(VIpp_East,3),', ',num2str(VIpp_North,3),']m/s']});
     bold_fig
     legend('IPP','startPoint','Geomagn','V_s_c_a_n');
+    print('-dpng', 'figure/Ionosphere_Pierce_Point.png');
 end
 return
